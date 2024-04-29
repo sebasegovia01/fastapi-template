@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from models.users import User
+from services.pubsub import publish_message
 from services.users import get_user_by_id, get_all_users, create_user, update_user, delete_user
 
 # Crear un nuevo router específico para las operaciones de usuario
@@ -21,6 +22,7 @@ async def get_all_users_endpoint():
 async def create_new_user(user: User):
     print(user)
     created_user = await create_user(user)
+    publish_message({"user_id": created_user.userId, "phone_number": created_user.userPhoneNumber})  # Publicar evento
     return created_user
 
 @router.put("/users/{user_id}", response_model=User)
