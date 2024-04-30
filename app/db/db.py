@@ -16,7 +16,7 @@ async def create_db_connection():
         connection = await asyncpg.connect(
             user=user, password=password, host=host, port=port, database=database
         )
-        print("Connection successful.")
+        print("Connection successfully.")
         return connection
     except Exception as e:
         print(f"Connection failed: {e}")

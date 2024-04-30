@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from controllers.users import router as users_router
+from app.controllers.users import router as users_router
 
 GLOBAL_PREFIX = '/api/v1'
 

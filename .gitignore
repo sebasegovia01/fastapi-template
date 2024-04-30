@@ -126,3 +126,7 @@ Desktop.ini
 # Private keys
 *.pem
 *.key
+
+#credentials
+
+credentials.json

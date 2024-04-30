@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
-from models.users import User
-from services.users import get_user_by_id, get_all_users, create_user, update_user, delete_user
+from app.models.users import User
+from app.services.users import get_user_by_id, get_all_users, create_user, update_user, delete_user
 
 # Crear un nuevo router específico para las operaciones de usuario
 router = APIRouter()
@@ -19,7 +19,6 @@ async def get_all_users_endpoint():
 
 @router.post("/users/", response_model=User, status_code=status.HTTP_201_CREATED)
 async def create_new_user(user: User):
-    print(user)
     created_user = await create_user(user)
     return created_user
 
@@ -36,3 +35,4 @@ async def delete_existing_user(user_id: int):
     if not result:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return {"message": "User deleted successfully"}
+
